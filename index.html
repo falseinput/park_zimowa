@@ -1,0 +1,534 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Park Zimowa</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./vendor/maplibre-gl.css">
+  <style>
+    html, body, #map {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+    }
+
+    body {
+      font: 14px/1.4 system-ui, sans-serif;
+      color: #1f2933;
+    }
+
+    .panel {
+      position: fixed;
+      z-index: 2;
+      inset: 0 auto 0 0;
+      box-sizing: border-box;
+      width: min(375px, 100vw);
+      height: 100%;
+      padding: 24px 18px;
+      overflow-y: auto;
+      background: rgb(255 255 255 / 94%);
+      box-shadow: 2px 0 14px rgb(0 0 0 / 24%);
+      backdrop-filter: blur(4px);
+    }
+
+    .layers {
+      display: grid;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .layer-row {
+      overflow: hidden;
+      border: 1px solid #cbd2d9;
+      border-radius: 7px;
+      background: rgb(255 255 255 / 76%);
+    }
+
+    .layer-row[open] {
+      border-color: #9aa5b1;
+      background: white;
+    }
+
+    .layer-row summary {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      padding: 9px 10px;
+      font-weight: 600;
+      cursor: pointer;
+      list-style: none;
+    }
+
+    .layer-row summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .layer-row summary::after {
+      width: 7px;
+      height: 7px;
+      margin: -4px 3px 0 auto;
+      border-right: 2px solid #52606d;
+      border-bottom: 2px solid #52606d;
+      content: "";
+      transform: rotate(45deg);
+      transition: transform 150ms ease;
+    }
+
+    .layer-row[open] summary::after {
+      margin-top: 4px;
+      transform: rotate(225deg);
+    }
+
+    .layer-row input[type="checkbox"] {
+      flex: 0 0 auto;
+      margin: 0;
+      cursor: pointer;
+    }
+
+    .layer-content {
+      padding: 0 10px 10px 32px;
+      color: #52606d;
+      font-size: 13px;
+    }
+
+    .layer-content p {
+      margin: 0;
+    }
+
+    .layer-budget {
+      margin-top: 7px !important;
+      color: #1f2933;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .background-layers {
+      display: grid;
+      gap: 8px;
+      margin-top: 18px;
+    }
+
+    .background-layers strong {
+      color: #52606d;
+      font-size: 12px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .background-layer {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    .background-layer input {
+      margin: 0;
+      cursor: pointer;
+    }
+
+    .zone-callout {
+      z-index: 1;
+      width: 88px;
+      height: 88px;
+      overflow: hidden;
+      border: 4px solid white;
+      border-radius: 50%;
+      background: #dce7e1;
+      box-shadow: 0 3px 12px rgb(0 0 0 / 45%);
+      pointer-events: none;
+    }
+
+    .zone-callout img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  </style>
+</head>
+<body>
+  <div id="map"></div>
+  <section class="panel">
+    <strong>Park Zimowa</strong>
+    <div class="layers">
+      <details class="layer-row layer-control" data-layer="existing-trees">
+        <summary><input type="checkbox" checked aria-label="Widoczność: Istniejące drzewa"> Istniejące drzewa</summary>
+        <div class="layer-content">
+          <p>Drzewa znajdujące się obecnie na terenie parku i uwzględnione w koncepcji.</p>
+          <p class="layer-budget"><strong>Szacowany budżet:</strong> nie dotyczy</p>
+        </div>
+      </details>
+      <details class="layer-row layer-control" data-layer="new-plantings">
+        <summary><input type="checkbox" checked aria-label="Widoczność: Nowe nasadzenia"> Nowe nasadzenia</summary>
+        <div class="layer-content">
+          <p>Planowane nasadzenie 41 drzew wraz z przygotowaniem gruntu, nawadnianiem i pielęgnacją.</p>
+          <p class="layer-budget"><strong>Szacowany budżet:</strong> <span data-budget-projects="Nasadzenia drzew">ładowanie…</span></p>
+        </div>
+      </details>
+      <details class="layer-row layer-control" data-layer="parking">
+        <summary><input type="checkbox" checked aria-label="Widoczność: Parking"> Parking</summary>
+        <div class="layer-content">
+          <p>Proponowana lokalizacja miejsc postojowych obsługujących teren parku.</p>
+          <p class="layer-budget"><strong>Szacowany budżet:</strong> brak odrębnej wyceny</p>
+        </div>
+      </details>
+      <details class="layer-row layer-control" data-layer="court">
+        <summary><input type="checkbox" checked aria-label="Widoczność: Boisko wielofunkcyjne"> Boisko wielofunkcyjne</summary>
+        <div class="layer-content">
+          <p>Boisko do siatkówki, tenisa i koszykówki, zaplanowane bez oświetlenia.</p>
+          <p class="layer-budget"><strong>Szacowany budżet:</strong> <span data-budget-projects="Boisko wielofunkcyjne">ładowanie…</span></p>
+        </div>
+      </details>
+      <details class="layer-row layer-control" data-layer="children-play">
+        <summary><input type="checkbox" checked aria-label="Widoczność: Strefa zabaw dla dzieci"> Strefa zabaw dla dzieci</summary>
+        <div class="layer-content">
+          <p>Integracyjna przestrzeń zabawy z różnorodnymi urządzeniami, miejscem dla opiekunów i dostępem do cienia.</p>
+          <p class="layer-budget"><strong>Szacowany budżet:</strong> <span data-budget-projects="Plac zabaw dla starszych dzieci">ładowanie…</span> wspólnie ze strefą aktywnej przygody</p>
+        </div>
+      </details>
+      <details class="layer-row layer-control" data-layer="active-adventure">
+        <summary><input type="checkbox" checked aria-label="Widoczność: Strefa aktywnej przygody"> Strefa aktywnej przygody</summary>
+        <div class="layer-content">
+          <p>Strefa wspierająca ruch, równowagę, skoki i zabawę na torach przeszkód.</p>
+          <p class="layer-budget"><strong>Szacowany budżet:</strong> <span data-budget-projects="Plac zabaw dla starszych dzieci">ładowanie…</span> wspólnie ze strefą zabaw dla dzieci</p>
+        </div>
+      </details>
+      <details class="layer-row layer-control" data-layer="outdoor-fitness">
+        <summary><input type="checkbox" checked aria-label="Widoczność: Strefa treningu plenerowego"> Strefa treningu plenerowego</summary>
+        <div class="layer-content">
+          <p>Plenerowa strefa street workout i kalisteniki przeznaczona dla użytkowników o różnym poziomie sprawności.</p>
+          <p class="layer-budget"><strong>Szacowany budżet:</strong> <span data-budget-projects="Park street workout">ładowanie…</span></p>
+        </div>
+      </details>
+      <details class="layer-row layer-control" data-layer="relax-zone">
+        <summary><input type="checkbox" checked aria-label="Widoczność: Strefa relaksu"> Strefa relaksu</summary>
+        <div class="layer-content">
+          <p>Spokojna przestrzeń odpoczynku i spotkań w pobliżu istniejących drzew, wyposażona w miejsca do siedzenia.</p>
+          <p class="layer-budget"><strong>Szacowany budżet:</strong> <span data-budget-projects="Mała strefa rekreacji">ładowanie…</span></p>
+        </div>
+      </details>
+    </div>
+    <div class="background-layers">
+      <strong>Warstwy tła</strong>
+      <label class="background-layer layer-control" data-layer="satellite">
+        <input type="checkbox" checked> Ortofotomapa
+      </label>
+      <label class="background-layer layer-control" data-layer="parcels">
+        <input type="checkbox" checked> Działki
+      </label>
+      <label class="background-layer layer-control" data-layer="park-area">
+        <input type="checkbox" checked> Teren parku
+      </label>
+    </div>
+  </section>
+
+  <script src="./vendor/maplibre-cog-protocol.js"></script>
+  <script type="module">
+    import * as maplibregl from './vendor/maplibre-gl.mjs';
+
+    const proposalBounds = [
+      [18.6326500000000, 52.9935739039870],
+      [18.6398000000000, 52.9965000000000]
+    ];
+    const satelliteBounds = [
+      [18.6248187107704, 52.9890714232455],
+      [18.6464155674838, 53.0000949305960]
+    ];
+    const layers = [
+      {id: 'satellite', file: 'satellite.tif', opacity: 0.78},
+      {id: 'park-area', file: 'park_area.tif', opacity: 0.34},
+      {id: 'existing-trees', file: 'existing_trees.tif', opacity: 1},
+      {id: 'new-plantings', file: 'new_plantings.tif', opacity: 1},
+      {id: 'parking', file: 'parking.tif', opacity: 0.82},
+      {id: 'court', file: 'court.tif', opacity: 1, calloutType: 'sports_field'},
+      {id: 'children-play', file: 'recreation_children_play.tif', opacity: 0.88, calloutType: 'children_play'},
+      {id: 'active-adventure', file: 'recreation_active_adventure.tif', opacity: 0.88, calloutType: 'active_adventure'},
+      {id: 'outdoor-fitness', file: 'recreation_outdoor_fitness.tif', opacity: 0.88, calloutType: 'outdoor_fitness'},
+      {id: 'relax-zone', file: 'recreation_relax_zone.tif', opacity: 0.88, calloutType: 'relax_zone'}
+    ];
+    const proposalCallouts = [];
+    const calloutLayerIds = {};
+    const calloutImages = {
+      active_adventure: './zones/playground.webp',
+      children_play: './zones/kids_playground.jpg',
+      outdoor_fitness: './zones/street-workout-park.jpg',
+      relax_zone: './zones/recreational.webp',
+      sports_field: './zones/sports.jpg'
+    };
+    const calloutLabels = {
+      active_adventure: 'strefa aktywnej przygody',
+      children_play: 'strefa zabaw dla dzieci',
+      outdoor_fitness: 'strefa treningu plenerowego',
+      relax_zone: 'strefa relaksu',
+      sports_field: 'boisko wielofunkcyjne'
+    };
+    const showError = (message) => {
+      console.error(message);
+    };
+
+    if (window.location.protocol === 'file:') {
+      showError('Uruchom stronę przez dołączony serwer: node serve.js');
+    }
+
+    maplibregl.addProtocol('cog', MaplibreCOGProtocol.cogProtocol);
+
+    const map = new maplibregl.Map({
+      container: 'map',
+      style: {
+        version: 8,
+        sources: {
+          osm: {
+            type: 'raster',
+            tiles: ['https://tile.openstreetmap.org/{z}/{x}/{y}.png'],
+            tileSize: 256,
+            attribution: '© OpenStreetMap contributors'
+          }
+        },
+        layers: [
+          {
+            id: 'osm',
+            type: 'raster',
+            source: 'osm'
+          }
+        ]
+      },
+      bounds: proposalBounds,
+      maxBounds: satelliteBounds,
+      minZoom: 13,
+      maxZoom: 22,
+      fitBoundsOptions: {padding: 40},
+      attributionControl: true
+    });
+
+    map.addControl(new maplibregl.NavigationControl(), 'top-right');
+    map.addControl(new maplibregl.ScaleControl({unit: 'metric'}), 'bottom-right');
+
+    const loadBudgets = async () => {
+      const response = await fetch('./budzet.json');
+      if (!response.ok) {
+        throw new Error(`Nie udało się wczytać budżetu (${response.status}).`);
+      }
+
+      const data = await response.json();
+      const formatter = new Intl.NumberFormat('pl-PL', {maximumFractionDigits: 0});
+      const formatBudget = (value) => `${formatter.format(value)} ${data.waluta}`;
+      const projects = new Map(data.projekty.map((project) => [project.nazwa, project.budzet]));
+
+      document.querySelectorAll('[data-budget-projects]').forEach((output) => {
+        const names = output.dataset.budgetProjects.split('|');
+        const missingNames = names.filter((name) => !projects.has(name));
+        if (missingNames.length > 0) {
+          throw new Error(`Brak wyceny dla: ${missingNames.join(', ')}.`);
+        }
+        const total = names.reduce((sum, name) => sum + projects.get(name), 0);
+        output.textContent = formatBudget(total);
+      });
+    };
+
+    loadBudgets().catch((error) => {
+      showError(error.message);
+    });
+
+    const setCalloutVisibility = (calloutType, visible) => {
+      proposalCallouts.forEach(({marker, calloutType: markerCalloutType}) => {
+        if (markerCalloutType === calloutType) {
+          marker.getElement().hidden = !visible;
+        }
+      });
+      (calloutLayerIds[calloutType] || []).forEach((layerId) => {
+        if (map.getLayer(layerId)) {
+          map.setLayoutProperty(layerId, 'visibility', visible ? 'visible' : 'none');
+        }
+      });
+    };
+
+    const setCalloutOpacity = (calloutType, opacity) => {
+      proposalCallouts.forEach(({marker, calloutType: markerCalloutType}) => {
+        if (markerCalloutType === calloutType) {
+          marker.getElement().style.opacity = opacity;
+        }
+      });
+      const [shadowLayerId, lineLayerId] = calloutLayerIds[calloutType] || [];
+      if (map.getLayer(lineLayerId)) {
+        map.setPaintProperty(lineLayerId, 'line-opacity', opacity);
+        map.setPaintProperty(shadowLayerId, 'line-opacity', 0.4 * opacity);
+      }
+    };
+
+    const addCalloutLineLayers = (prefix, calloutType) => {
+      const filter = ['==', ['get', 'callout_type'], calloutType];
+      calloutLayerIds[calloutType] = [
+        `${prefix}-callout-line-shadow`,
+        `${prefix}-callout-lines`
+      ];
+      map.addLayer({
+        id: `${prefix}-callout-line-shadow`,
+        type: 'line',
+        source: 'proposal-callouts',
+        filter,
+        paint: {
+          'line-color': '#000000',
+          'line-opacity': 0.35,
+          'line-width': 6,
+          'line-blur': 2
+        }
+      });
+      map.addLayer({
+        id: `${prefix}-callout-lines`,
+        type: 'line',
+        source: 'proposal-callouts',
+        filter,
+        paint: {
+          'line-color': '#ffffff',
+          'line-opacity': 1,
+          'line-width': 3
+        }
+      });
+    };
+
+    const loadProposalCallouts = async () => {
+      const response = await fetch('./proposal_callouts.geojson');
+      if (!response.ok) {
+        throw new Error(`Nie udało się wczytać współrzędnych odnośników (${response.status}).`);
+      }
+
+      const data = await response.json();
+      map.addSource('proposal-callouts', {
+        type: 'geojson',
+        data
+      });
+      layers
+        .filter(({calloutType}) => calloutType)
+        .forEach(({calloutType}) => {
+          addCalloutLineLayers(calloutType.replaceAll('_', '-'), calloutType);
+        });
+
+      data.features.forEach((feature) => {
+        const coordinates = feature.geometry.coordinates[0];
+        const calloutType = feature.properties.callout_type;
+        const element = document.createElement('div');
+        const image = document.createElement('img');
+
+        element.className = 'zone-callout';
+        element.dataset.calloutId = feature.properties.callout_id;
+        element.dataset.calloutType = calloutType;
+        element.title = calloutLabels[calloutType] || calloutType.replaceAll('_', ' ');
+        image.src = calloutImages[calloutType] || './recreation-placeholder.svg';
+        image.alt = `${element.title} - zdjęcie`;
+        element.append(image);
+
+        const marker = new maplibregl.Marker({
+          element,
+          anchor: 'center'
+        }).setLngLat(coordinates).addTo(map);
+
+        proposalCallouts.push({coordinates, marker, calloutType});
+      });
+
+      layers.filter(({calloutType}) => calloutType).forEach(({id, opacity, calloutType}) => {
+        const row = document.querySelector(`[data-layer="${id}"]`);
+        const visible = row.querySelector('input[type="checkbox"]').checked;
+        setCalloutVisibility(calloutType, visible);
+        setCalloutOpacity(calloutType, opacity);
+      });
+    };
+
+    map.on('load', async () => {
+      layers.forEach(({id, file, opacity}) => {
+        const cogUrl = new URL(`./${file}`, window.location.href).href;
+
+        map.addSource(id, {
+          type: 'raster',
+          url: `cog://${cogUrl}`,
+          tileSize: 256
+        });
+        map.addLayer({
+          id,
+          type: 'raster',
+          source: id,
+          paint: {
+            'raster-opacity': opacity,
+            'raster-fade-duration': 0
+          }
+        });
+      });
+
+      map.addSource('parcels', {
+        type: 'geojson',
+        data: './park_parcels.geojson'
+      });
+      map.addLayer({
+        id: 'parcels-fill',
+        type: 'fill',
+        source: 'parcels',
+        paint: {
+          'fill-color': '#fff4c2',
+          'fill-opacity': 0.12
+        }
+      }, 'existing-trees');
+      map.addLayer({
+        id: 'parcels-line',
+        type: 'line',
+        source: 'parcels',
+        paint: {
+          'line-color': '#6b4700',
+          'line-opacity': 0.95,
+          'line-width': 2
+        }
+      }, 'existing-trees');
+      map.addLayer({
+        id: 'parcels-label',
+        type: 'symbol',
+        source: 'parcels',
+        layout: {
+          'text-field': ['get', 'parcel'],
+          'text-size': 15,
+          'text-allow-overlap': true,
+          'text-ignore-placement': true
+        },
+        paint: {
+          'text-color': '#4b3200',
+          'text-halo-color': '#ffffff',
+          'text-halo-width': 2,
+          'text-opacity': 1
+        }
+      });
+      try {
+        await loadProposalCallouts();
+      } catch (error) {
+        showError(error.message);
+      }
+    });
+
+    map.on('error', ({error}) => {
+      showError(error?.message || 'Nie udało się wczytać mapy lub warstwy.');
+    });
+
+    document.querySelectorAll('.layer-control').forEach((row) => {
+      const id = row.dataset.layer;
+      const checkbox = row.querySelector('input[type="checkbox"]');
+
+      checkbox.addEventListener('click', (event) => {
+        event.stopPropagation();
+      });
+
+      checkbox.addEventListener('change', () => {
+        const layerIds = id === 'parcels'
+          ? ['parcels-fill', 'parcels-line', 'parcels-label']
+          : [id];
+        layerIds.forEach((layerId) => {
+          if (map.getLayer(layerId)) {
+            map.setLayoutProperty(layerId, 'visibility', checkbox.checked ? 'visible' : 'none');
+          }
+        });
+        const layer = layers.find(({id: layerId}) => layerId === id);
+        if (layer?.calloutType) {
+          setCalloutVisibility(layer.calloutType, checkbox.checked);
+        }
+      });
+    });
+
+  </script>
+</body>
+</html>

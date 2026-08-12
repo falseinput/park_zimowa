@@ -1,0 +1,130 @@
+{
+  "waluta": "PLN",
+  "wartosci": {
+    "brutto": true,
+    "charakter": "szacunki planistyczne do Budżetu Obywatelskiego Torunia"
+  },
+  "projekty": [
+    {
+      "nazwa": "Boisko wielofunkcyjne",
+      "zakres": "siatkówka, tenis, koszykówka, bez oświetlenia",
+      "budzet": 300000,
+      "utrzymanie_roczne": 25000,
+      "koszty": {
+        "roboty_ziemne_i_przygotowanie_terenu": 35000,
+        "podbudowa_i_odwodnienie": 55000,
+        "nawierzchnia_poliuretanowa": 95000,
+        "ogrodzenie_i_pilkochwyty": 45000,
+        "kosze_do_koszykowki": 12000,
+        "wyposazenie_siatkowka_i_tenis": 10000,
+        "linie_boiskowe": 6000,
+        "dokumentacja_i_projekt": 15000,
+        "rezerwa": 27000
+      }
+    },
+    {
+      "nazwa": "Park street workout",
+      "powierzchnia_m2": 150,
+      "budzet": 150000,
+      "utrzymanie_roczne": 15000,
+      "nawierzchnia": "piasek",
+      "koszty": {
+        "zestaw_street_workout_8_10_elementow": 45000,
+        "piasek": 15000,
+        "przygotowanie_terenu_i_korytowanie": 18000,
+        "podbudowa_drenaz_i_obrzeza": 12000,
+        "montaz_i_fundamenty": 15000,
+        "lawki": 5000,
+        "kosze_na_smieci": 2500,
+        "tablica_regulaminowa": 2000,
+        "dojscie_chodnikowe": 8000,
+        "projekt_i_dokumentacja": 10000,
+        "rezerwa": 17500
+      }
+    },
+    {
+      "nazwa": "Plac zabaw dla starszych dzieci",
+      "wariant": "MID",
+      "grupa_wiekowa": "ok. 7-14 lat",
+      "powierzchnia_m2": "300-400",
+      "budzet": 220000,
+      "utrzymanie_roczne": 15000,
+      "koszty": {
+        "tyrolka_25_30_m": 30000,
+        "duzy_zestaw_wspinaczkowy_lub_linarium": 35000,
+        "trampoliny_ziemne_3_szt": 18000,
+        "hustawki_bocianie_gniazdo_2_szt": 16000,
+        "platformy_i_przeszkody": 22000,
+        "rownowaznie_i_elementy_parkour": 12000,
+        "karuzela_obrotowa": 10000,
+        "mala_zjezdzalnia_lub_element_zjazdowy": 12000,
+        "nawierzchnia_bezpieczna_piasek_i_obrzeza": 20000,
+        "przygotowanie_terenu": 10000,
+        "lawki_kosze_i_regulamin": 7000,
+        "projekt_i_dokumentacja": 10000,
+        "rezerwa": 18000
+      }
+    },
+    {
+      "nazwa": "Niewielki wybieg dla psów",
+      "powierzchnia_m2": "400-500",
+      "budzet": 90000,
+      "utrzymanie_roczne": 12000,
+      "koszty": {
+        "ogrodzenie_i_bramy_ze_sluza": 35000,
+        "przygotowanie_i_zagospodarowanie_terenu": 12000,
+        "przeszkody_agility": 12000,
+        "lawki": 5000,
+        "kosze_i_dyspensery": 4000,
+        "poidelko_i_infrastruktura_wodna": 5000,
+        "nasadzenia_i_zacienienie": 5000,
+        "regulamin_i_oznaczenie": 2000,
+        "projekt": 5000,
+        "rezerwa": 5000
+      }
+    },
+    {
+      "nazwa": "Mała strefa rekreacji",
+      "powierzchnia_m2": "200-300",
+      "budzet": 75000,
+      "utrzymanie_roczne": 8000,
+      "koszty": {
+        "lawki_4_szt": 12000,
+        "hamaki_miejskie_4_szt": 14000,
+        "stol_do_ping_ponga": 7000,
+        "przygotowanie_terenu_i_nawierzchnie": 12000,
+        "nasadzenia_i_drzewa_dajace_cien": 12000,
+        "kosze": 3000,
+        "stojaki_rowerowe": 2500,
+        "projekt_i_dokumentacja": 6000,
+        "rezerwa": 6500
+      }
+    },
+    {
+      "nazwa": "Nasadzenia drzew",
+      "liczba_drzew": 41,
+      "parametry": {
+        "wysokosc_orientacyjna_m": "4-5",
+        "obwod_pnia_cm": "16-18",
+        "warunki": "suchy, piaszczysty grunt",
+        "nawadnianie": "z istniejącego przyłącza w rejonie ul. Zimowej",
+        "pielegnacja": "3 lata"
+      },
+      "budzet": 190000,
+      "koszty": {
+        "drzewa_transport_i_sadzenie": 80000,
+        "wymiana_i_uzdatnienie_gruntu": 25000,
+        "palikowanie_i_stabilizacja": 7500,
+        "sciolkowanie": 5000,
+        "system_nawadniania": 23000,
+        "pielegnacja_i_podlewanie_3_lata": 30000,
+        "rezerwa": 19500
+      }
+    }
+  ],
+  "podsumowanie": {
+    "laczny_budzet_inwestycyjny": 1025000,
+    "laczne_szacunkowe_utrzymanie_roczne": 75000,
+    "uwaga": "Koszty utrzymania są orientacyjne i nie muszą być częścią kwoty inwestycyjnej projektu BO."
+  }
+}
