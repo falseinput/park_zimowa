@@ -43,26 +43,43 @@
       }
     },
     {
-      "nazwa": "Plac zabaw dla starszych dzieci",
-      "wariant": "MID",
+      "nazwa": "Plac zabaw dla większych dzieci",
       "grupa_wiekowa": "ok. 7-14 lat",
-      "powierzchnia_m2": "300-400",
-      "budzet": 220000,
-      "utrzymanie_roczne": 15000,
+      "budzet": 125000,
+      "utrzymanie_roczne": 8000,
       "koszty": {
         "tyrolka_25_30_m": 30000,
-        "duzy_zestaw_wspinaczkowy_lub_linarium": 35000,
-        "trampoliny_ziemne_3_szt": 18000,
-        "hustawki_bocianie_gniazdo_2_szt": 16000,
-        "platformy_i_przeszkody": 22000,
-        "rownowaznie_i_elementy_parkour": 12000,
-        "karuzela_obrotowa": 10000,
-        "mala_zjezdzalnia_lub_element_zjazdowy": 12000,
-        "nawierzchnia_bezpieczna_piasek_i_obrzeza": 20000,
-        "przygotowanie_terenu": 10000,
-        "lawki_kosze_i_regulamin": 7000,
-        "projekt_i_dokumentacja": 10000,
-        "rezerwa": 18000
+        "duzy_zestaw_wspinaczkowy_lub_linarium": 30000,
+        "trampoliny_ziemne_2_szt": 12000,
+        "platformy_i_przeszkody": 15000,
+        "rownowaznie_i_elementy_parkour": 10000,
+        "karuzela_obrotowa": 7000,
+        "nawierzchnia_bezpieczna_i_obrzeza": 8000,
+        "przygotowanie_terenu": 5000,
+        "lawki_kosze_i_regulamin": 3000,
+        "projekt_i_dokumentacja": 3000,
+        "rezerwa": 2000
+      }
+    },
+    {
+      "nazwa": "Plac zabaw dla mniejszych dzieci",
+      "grupa_wiekowa": "ok. 2-7 lat",
+      "budzet": 95000,
+      "utrzymanie_roczne": 7000,
+      "koszty": {
+        "maly_zestaw_zabawowy_z_wieza_i_zjezdzalnia": 25000,
+        "hustawki_2_stanowiska": 10000,
+        "hustawka_bocianie_gniazdo": 8000,
+        "trampolina_ziemna_1_szt": 6000,
+        "mala_zjezdzalnia_lub_element_zjazdowy": 10000,
+        "rownowaznie_i_niskie_elementy_sprawnosciowe": 6000,
+        "elementy_sensoryczne_i_edukacyjne": 5000,
+        "ogrodzenie_z_furtka": 8000,
+        "nawierzchnia_bezpieczna_i_obrzeza": 7000,
+        "przygotowanie_terenu": 3000,
+        "lawki_kosze_i_regulamin": 3000,
+        "projekt_i_dokumentacja": 2000,
+        "rezerwa": 2000
       }
     },
     {
@@ -98,6 +115,21 @@
         "stojaki_rowerowe": 2500,
         "projekt_i_dokumentacja": 6000,
         "rezerwa": 6500
+      }
+    },
+    {
+      "nazwa": "Parking",
+      "liczba_miejsc": 48,
+      "budzet": 300000,
+      "nawierzchnia": "kostka brukowa",
+      "koszty": {
+        "roboty_ziemne_i_przygotowanie_terenu": 45000,
+        "podbudowa": 85000,
+        "kostka_brukowa": 115000,
+        "krawezniki_i_obrzeza": 25000,
+        "odwodnienie_i_drobne_prace_terenowe": 15000,
+        "oznakowanie_miejsc_postojowych": 5000,
+        "rezerwa": 10000
       }
     },
     {
