@@ -1,7 +1,5 @@
 {
 "type": "FeatureCollection",
-"name": "concept_park_parcels",
-"xy_coordinate_resolution": 1e-07,
 "features": [
 { "type": "Feature", "properties": { "id_dzialki": "046301_1.0066.495", "parcel": "495", "overlap_m2": 745.0 }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 18.6378647, 52.995792 ], [ 18.6378716, 52.9959641 ], [ 18.6378716, 52.9959642 ], [ 18.6377672, 52.9961122 ], [ 18.6374968, 52.9960448 ], [ 18.6375281, 52.9957854 ], [ 18.6375281, 52.9957854 ], [ 18.6378647, 52.995792 ] ] ] } },
 { "type": "Feature", "properties": { "id_dzialki": "046301_1.0066.496/1", "parcel": "496/1", "overlap_m2": 81.2 }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 18.6378647, 52.995792 ], [ 18.6379913, 52.9957945 ], [ 18.6378716, 52.9959641 ], [ 18.6378647, 52.995792 ] ] ] } },

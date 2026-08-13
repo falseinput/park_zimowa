@@ -1,0 +1,44 @@
+[
+  {
+    "title": "Nowe nasadzenia",
+    "description": "Planowane nasadzenie 41 drzew o orientacyjnej wysokości 4–5 m i obwodzie pnia 16–18 cm, wraz z przygotowaniem suchego, piaszczystego gruntu, systemem nawadniania i trzyletnią pielęgnacją.",
+    "budget_id": "Nasadzenia drzew",
+    "layer_ids": ["new-plantings"]
+  },
+  {
+    "title": "Boisko wielofunkcyjne",
+    "description": "Boisko do siatkówki, tenisa i koszykówki, zaplanowane bez oświetlenia.",
+    "budget_id": "Boisko wielofunkcyjne",
+    "layer_ids": ["court"]
+  },
+  {
+    "title": "Strefa zabaw dla dzieci",
+    "description": "Integracyjna przestrzeń zabawy dla dzieci w wieku ok. 2–7 lat, z różnorodnymi urządzeniami, miejscem dla opiekunów i dostępem do cienia.",
+    "budget_id": "Plac zabaw dla mniejszych dzieci",
+    "layer_ids": ["children-play"]
+  },
+  {
+    "title": "Strefa aktywnej przygody",
+    "description": "Strefa dla dzieci w wieku ok. 7–14 lat, wspierająca ruch, równowagę, skoki i zabawę na torach przeszkód. Proponowane wyposażenie: tyrolka, zjeżdżalnia i huśtawki.",
+    "budget_id": "Plac zabaw dla większych dzieci",
+    "layer_ids": ["active-adventure"]
+  },
+  {
+    "title": "Strefa treningu plenerowego",
+    "description": "Plenerowa strefa street workout i kalisteniki o powierzchni ok. 150 m², z nawierzchnią piaskową, przeznaczona dla użytkowników o różnym poziomie sprawności.",
+    "budget_id": "Park street workout",
+    "layer_ids": ["outdoor-fitness"]
+  },
+  {
+    "title": "Strefa relaksu",
+    "description": "Spokojna przestrzeń odpoczynku i spotkań o powierzchni ok. 200–300 m², położona w pobliżu istniejących drzew i wyposażona w miejsca do siedzenia.",
+    "budget_id": "Mała strefa rekreacji",
+    "layer_ids": ["relax-zone"]
+  },
+  {
+    "title": "Parking",
+    "description": "Proponowana lokalizacja parkingu z nawierzchnią z kostki brukowej, na ok. 48 miejsc obsługujących teren parku.",
+    "budget_id": "Parking",
+    "layer_ids": ["parking"]
+  }
+]

@@ -1,0 +1,26 @@
+[
+  {
+    "title": "Ortofotomapa",
+    "description": "Aktualna ortofotomapa obszaru parku.",
+    "budget_id": null,
+    "layer_ids": ["satellite"]
+  },
+  {
+    "title": "Działki",
+    "description": "Granice działek objętych projektem.",
+    "budget_id": null,
+    "layer_ids": ["parcels-fill", "parcels-line"]
+  },
+  {
+    "title": "Teren parku",
+    "description": "Granica terenu planowanego parku.",
+    "budget_id": null,
+    "layer_ids": ["park-area"]
+  },
+  {
+    "title": "MPZP",
+    "description": "Ustalenia miejscowego planu zagospodarowania przestrzennego.",
+    "budget_id": null,
+    "layer_ids": ["mpzp"]
+  }
+]

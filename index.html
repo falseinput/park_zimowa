@@ -3,7 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Park Zimowa</title>
+  <meta name="description" content="">
+  <title></title>
   <link rel="icon" href="data:,">
   <link rel="stylesheet" href="./vendor/maplibre-gl.css">
   <style>
@@ -270,81 +271,14 @@
     aria-expanded="false"
   >Pokaż legendę</button>
   <section id="legend-panel" class="panel" aria-label="Legenda mapy">
-    <h2>Park Zimowa</h2>
-    Projekt zagospodarowania terenu zieleni miejskiej w rejonie ulicy Zimowej w Toruniu. Celem projektu jest stworzenie atrakcyjnej przestrzeni sportowo-rekreacyjnej dla mieszkańców.
-     <p>Lokalizacja: działki 498, 499, 503, 504, 505/1, 505/2. Obszar 140.19-U/ZP2 MPZP.</p>
-    <div class="layers">
+    <h2 data-page-title></h2>
+    <p data-page-description></p>
+    <p data-location-description></p>
+    <div id="investment-layers" class="layers">
       <strong>Elementy inwestycji</strong>
-      <!-- <details class="layer-row layer-control" data-layer="existing-trees">
-        <summary><input type="checkbox" checked aria-label="Widoczność: Istniejące drzewa"> Istniejące drzewa</summary>
-        <div class="layer-content">
-          <p>Drzewa znajdujące się obecnie na terenie parku i uwzględnione w koncepcji.</p>
-        </div>
-      </details> -->
-      <details class="layer-row layer-control" data-layer="new-plantings">
-        <summary><input type="checkbox" checked aria-label="Widoczność: Nowe nasadzenia"> Nowe nasadzenia</summary>
-        <div class="layer-content">
-          <p>Planowane nasadzenie ok. 40 drzew wraz z przygotowaniem gruntu, nawadnianiem i pielęgnacją.</p>
-          <p class="layer-budget"><strong>Szacowany budżet:</strong> <span data-budget-projects="Nasadzenia drzew">ładowanie…</span></p>
-        </div>
-      </details>
-      <details class="layer-row layer-control" data-layer="court">
-        <summary><input type="checkbox" checked aria-label="Widoczność: Boisko wielofunkcyjne"> Boisko wielofunkcyjne</summary>
-        <div class="layer-content">
-          <p>Boisko do siatkówki, tenisa i koszykówki, zaplanowane bez oświetlenia.</p>
-          <p class="layer-budget"><strong>Szacowany budżet:</strong> <span data-budget-projects="Boisko wielofunkcyjne">ładowanie…</span></p>
-        </div>
-      </details>
-      <details class="layer-row layer-control" data-layer="children-play">
-        <summary><input type="checkbox" checked aria-label="Widoczność: Strefa zabaw dla dzieci"> Strefa zabaw dla dzieci</summary>
-        <div class="layer-content">
-          <p>Integracyjna przestrzeń zabawy z różnorodnymi urządzeniami, miejscem dla opiekunów i dostępem do cienia.</p>
-          <p class="layer-budget"><strong>Szacowany budżet:</strong> <span data-budget-projects="Plac zabaw dla mniejszych dzieci">ładowanie…</span></p>
-        </div>
-      </details>
-      <details class="layer-row layer-control" data-layer="active-adventure">
-        <summary><input type="checkbox" checked aria-label="Widoczność: Strefa aktywnej przygody"> Strefa aktywnej przygody</summary>
-        <div class="layer-content">
-          <p>Strefa wspierająca ruch, równowagę, skoki i zabawę na torach przeszkód. Proponowane wyposażenie: tyrolka, zjeżdżalnia, huśtawki.</p>
-          <p class="layer-budget"><strong>Szacowany budżet:</strong> <span data-budget-projects="Plac zabaw dla większych dzieci">ładowanie…</span></p>
-        </div>
-      </details>
-      <details class="layer-row layer-control" data-layer="outdoor-fitness">
-        <summary><input type="checkbox" checked aria-label="Widoczność: Strefa treningu plenerowego"> Strefa treningu plenerowego</summary>
-        <div class="layer-content">
-          <p>Plenerowa strefa street workout i kalisteniki przeznaczona dla użytkowników o różnym poziomie sprawności.</p>
-          <p class="layer-budget"><strong>Szacowany budżet:</strong> <span data-budget-projects="Park street workout">ładowanie…</span></p>
-        </div>
-      </details>
-      <details class="layer-row layer-control" data-layer="relax-zone">
-        <summary><input type="checkbox" checked aria-label="Widoczność: Strefa relaksu"> Strefa relaksu</summary>
-        <div class="layer-content">
-          <p>Spokojna przestrzeń odpoczynku i spotkań w pobliżu istniejących drzew, wyposażona w miejsca do siedzenia.</p>
-          <p class="layer-budget"><strong>Szacowany budżet:</strong> <span data-budget-projects="Mała strefa rekreacji">ładowanie…</span></p>
-        </div>
-      </details>
-      <details class="layer-row layer-control" data-layer="parking">
-        <summary><input type="checkbox" checked aria-label="Widoczność: Parking"> Parking</summary>
-        <div class="layer-content">
-          <p>Proponowana lokalizacja parkingu na ok. 48 miejsc obsługujących teren parku.</p>
-          <p class="layer-budget"><strong>Szacowany budżet:</strong> <span data-budget-projects="Parking">ładowanie…</span></p>
-        </div>
-      </details>
     </div>
-    <div class="background-layers">
+    <div id="background-layers" class="background-layers">
       <strong>Warstwy tła</strong>
-      <label class="background-layer layer-control" data-layer="satellite">
-        <input type="checkbox" checked> Ortofotomapa
-      </label>
-      <label class="background-layer layer-control" data-layer="parcels">
-        <input type="checkbox" checked> Działki
-      </label>
-      <label class="background-layer layer-control" data-layer="park-area">
-        <input type="checkbox" checked> Teren parku
-      </label>
-      <label class="background-layer layer-control" data-layer="mpzp">
-        <input type="checkbox" checked> MPZP
-      </label>
     </div>
   </section>
   <div id="map"></div>
@@ -362,35 +296,11 @@
       [18.6248187107704, 52.9890714232455],
       [18.6464155674838, 53.0000949305960]
     ];
-    const layers = [
-      {id: 'satellite', file: 'satellite.tif', opacity: 0.78},
-      {id: 'mpzp', file: 'mpzp.tif', opacity: 0.68},
-      {id: 'park-area', file: 'park_area.json', opacity: 0.27, fillColor: 'green'},
-      {id: 'existing-trees', file: 'existing_trees.json', opacity: 0.8, fillColor: '#41aa50', fillOutlineColor: '#196928'},
-      {id: 'new-plantings', file: 'new_trees.json', opacity: 0.8, fillColor: '#41aa50', fillOutlineColor: '#196928'},
-      {id: 'parking', file: 'parking.tif', opacity: 0.72},
-      {id: 'court', file: 'court.tif', opacity: 1, calloutType: 'sports_field'},
-      {id: 'children-play', file: 'recreation_children_play.tif', opacity: 0.88, calloutType: 'children_play'},
-      {id: 'active-adventure', file: 'recreation_active_adventure.tif', opacity: 0.88, calloutType: 'active_adventure'},
-      {id: 'outdoor-fitness', file: 'recreation_outdoor_fitness.tif', opacity: 0.88, calloutType: 'outdoor_fitness'},
-      {id: 'relax-zone', file: 'recreation_relax_zone.tif', opacity: 0.88, calloutType: 'relax_zone'}
-    ];
-    const proposalCallouts = [];
-    const calloutLayerIds = {};
-    const calloutImages = {
-      active_adventure: './zones/playground.webp',
-      children_play: './zones/kids_playground.jpg',
-      outdoor_fitness: './zones/street-workout-park.jpg',
-      relax_zone: './zones/recreational.webp',
-      sports_field: './zones/sports.jpg'
-    };
-    const calloutLabels = {
-      active_adventure: 'strefa aktywnej przygody',
-      children_play: 'strefa zabaw dla dzieci',
-      outdoor_fitness: 'strefa treningu plenerowego',
-      relax_zone: 'strefa relaksu',
-      sports_field: 'boisko wielofunkcyjne'
-    };
+    const supportedLayerTypes = new Set(['fill', 'line', 'raster']);
+    const supportedSourceTypes = new Set(['cog', 'geojson']);
+    const layerVisibility = new Map();
+    const calloutMarkers = new Map();
+    const calloutLineLayers = new Map();
     const showError = (message) => {
       console.error(message);
     };
@@ -419,287 +329,271 @@
       showError('Uruchom stronę przez dołączony serwer: node serve.js');
     }
 
-    maplibregl.addProtocol('cog', MaplibreCOGProtocol.cogProtocol);
-
-    const map = new maplibregl.Map({
-      container: 'map',
-      style: {
-        version: 8,
-        sources: {
-          osm: {
-            type: 'raster',
-            tiles: ['https://tile.openstreetmap.org/{z}/{x}/{y}.png'],
-            tileSize: 256,
-            attribution: '© OpenStreetMap contributors'
-          }
-        },
-        layers: [
-          {
-            id: 'osm',
-            type: 'raster',
-            source: 'osm'
-          }
-        ]
-      },
-      bounds: proposalBounds,
-      maxBounds: satelliteBounds,
-      minZoom: 13,
-      maxZoom: 22,
-      fitBoundsOptions: getFitBoundsOptions(),
-      attributionControl: true
-    });
-
-    map.addControl(new maplibregl.NavigationControl(), 'top-right');
-    map.addControl(new maplibregl.ScaleControl({unit: 'metric'}), 'bottom-right');
-
-    mobileLegendQuery.addEventListener('change', () => {
-      setLegendOpen(false);
-      map.resize();
-      map.fitBounds(proposalBounds, getFitBoundsOptions());
-    });
-
-    const loadBudgets = async () => {
-      const response = await fetch('./budzet.json');
+    const fetchJson = async (url) => {
+      const response = await fetch(url);
       if (!response.ok) {
-        throw new Error(`Nie udało się wczytać budżetu (${response.status}).`);
+        throw new Error(`Nie udało się wczytać ${url} (${response.status}).`);
       }
-
-      const data = await response.json();
-      const formatter = new Intl.NumberFormat('pl-PL', {maximumFractionDigits: 0});
-      const formatBudget = (value) => `${formatter.format(value)} ${data.waluta}`;
-      const projects = new Map(data.projekty.map((project) => [project.nazwa, project.budzet]));
-
-      document.querySelectorAll('[data-budget-projects]').forEach((output) => {
-        const names = output.dataset.budgetProjects.split('|');
-        const missingNames = names.filter((name) => !projects.has(name));
-        if (missingNames.length > 0) {
-          throw new Error(`Brak wyceny dla: ${missingNames.join(', ')}.`);
-        }
-        const total = names.reduce((sum, name) => sum + projects.get(name), 0);
-        output.textContent = formatBudget(total);
-      });
+      return response.json();
     };
 
-    loadBudgets().catch((error) => {
-      showError(error.message);
-    });
+    const renderPage = (page) => {
+      document.title = page.title;
+      document.querySelector('meta[name="description"]').content = page.description;
+      document.querySelector('[data-page-title]').textContent = page.title;
+      document.querySelector('[data-page-description]').textContent = page.description;
+      document.querySelector('[data-location-description]').textContent = page.location_description;
+    };
 
-    const setCalloutVisibility = (calloutType, visible) => {
-      proposalCallouts.forEach(({marker, calloutType: markerCalloutType}) => {
-        if (markerCalloutType === calloutType) {
-          marker.getElement().hidden = !visible;
-        }
-      });
-      (calloutLayerIds[calloutType] || []).forEach((layerId) => {
+    const setLayerVisibility = (map, layerIds, visible) => {
+      layerIds.forEach((layerId) => {
+        layerVisibility.set(layerId, visible);
         if (map.getLayer(layerId)) {
           map.setLayoutProperty(layerId, 'visibility', visible ? 'visible' : 'none');
         }
-      });
-    };
-
-    const setCalloutOpacity = (calloutType, opacity) => {
-      proposalCallouts.forEach(({marker, calloutType: markerCalloutType}) => {
-        if (markerCalloutType === calloutType) {
-          marker.getElement().style.opacity = opacity;
+        const marker = calloutMarkers.get(layerId);
+        if (marker) {
+          marker.getElement().hidden = !visible;
         }
-      });
-      const [shadowLayerId, lineLayerId] = calloutLayerIds[calloutType] || [];
-      if (map.getLayer(lineLayerId)) {
-        map.setPaintProperty(lineLayerId, 'line-opacity', opacity);
-        map.setPaintProperty(shadowLayerId, 'line-opacity', 0.4 * opacity);
-      }
-    };
-
-    const addCalloutLineLayers = (prefix, calloutType) => {
-      const filter = ['==', ['get', 'callout_type'], calloutType];
-      calloutLayerIds[calloutType] = [
-        `${prefix}-callout-line-shadow`,
-        `${prefix}-callout-lines`
-      ];
-      map.addLayer({
-        id: `${prefix}-callout-line-shadow`,
-        type: 'line',
-        source: 'proposal-callouts',
-        filter,
-        paint: {
-          'line-color': '#000000',
-          'line-opacity': 0.35,
-          'line-width': 6,
-          'line-blur': 2
-        }
-      });
-      map.addLayer({
-        id: `${prefix}-callout-lines`,
-        type: 'line',
-        source: 'proposal-callouts',
-        filter,
-        paint: {
-          'line-color': '#ffffff',
-          'line-opacity': 1,
-          'line-width': 3
-        }
-      });
-    };
-
-    const loadProposalCallouts = async () => {
-      const response = await fetch('./proposal_callouts.geojson');
-      if (!response.ok) {
-        throw new Error(`Nie udało się wczytać współrzędnych odnośników (${response.status}).`);
-      }
-
-      const data = await response.json();
-      map.addSource('proposal-callouts', {
-        type: 'geojson',
-        data
-      });
-      layers
-        .filter(({calloutType}) => calloutType)
-        .forEach(({calloutType}) => {
-          addCalloutLineLayers(calloutType.replaceAll('_', '-'), calloutType);
+        (calloutLineLayers.get(layerId) || []).forEach((calloutLayerId) => {
+          if (map.getLayer(calloutLayerId)) {
+            map.setLayoutProperty(calloutLayerId, 'visibility', visible ? 'visible' : 'none');
+          }
         });
-
-      data.features.forEach((feature) => {
-        const coordinates = feature.geometry.coordinates[0];
-        const calloutType = feature.properties.callout_type;
-        const element = document.createElement('div');
-        const image = document.createElement('img');
-
-        element.className = 'zone-callout';
-        element.dataset.calloutId = feature.properties.callout_id;
-        element.dataset.calloutType = calloutType;
-        element.title = calloutLabels[calloutType] || calloutType.replaceAll('_', ' ');
-        image.src = calloutImages[calloutType] || './recreation-placeholder.svg';
-        image.alt = `${element.title} - zdjęcie`;
-        element.append(image);
-
-        const marker = new maplibregl.Marker({
-          element,
-          anchor: 'center'
-        }).setLngLat(coordinates).addTo(map);
-
-        proposalCallouts.push({coordinates, marker, calloutType});
-      });
-
-      layers.filter(({calloutType}) => calloutType).forEach(({id, opacity, calloutType}) => {
-        const row = document.querySelector(`[data-layer="${id}"]`);
-        const visible = row.querySelector('input[type="checkbox"]').checked;
-        setCalloutVisibility(calloutType, visible);
-        setCalloutOpacity(calloutType, opacity);
       });
     };
 
-    map.on('load', async () => {
-      layers.forEach(({id, file, opacity, fillColor, fillOutlineColor}) => {
-        if (file.endsWith('.json')) {
-          map.addSource(id, {
-            type: 'geojson',
-            data: `./${file}`
-          });
-          map.addLayer({
-            id,
-            type: 'fill',
-            source: id,
-            paint: {
-              'fill-outline-color': fillOutlineColor ?? '#000000',
-              'fill-color': fillColor,
-              'fill-opacity': opacity
-            }
-          });
+    const createCheckbox = (title, layerIds, map) => {
+      const checkbox = document.createElement('input');
+      checkbox.type = 'checkbox';
+      checkbox.checked = true;
+      checkbox.setAttribute('aria-label', `Widoczność: ${title}`);
+      layerIds.forEach((layerId) => layerVisibility.set(layerId, true));
+      checkbox.addEventListener('click', (event) => {
+        event.stopPropagation();
+      });
+      checkbox.addEventListener('change', () => {
+        setLayerVisibility(map, layerIds, checkbox.checked);
+      });
+      return checkbox;
+    };
+
+    const renderInvestmentItems = (items, budget, map) => {
+      const container = document.querySelector('#investment-layers');
+      const projects = new Map(budget.projects.map((project) => [project.id, project.budget]));
+      const formatter = new Intl.NumberFormat('pl-PL', {maximumFractionDigits: 0});
+
+      items.forEach((item) => {
+        const budgetValue = projects.get(item.budget_id);
+        if (budgetValue === undefined) {
+          throw new Error(`Brak wyceny dla: ${item.budget_id}.`);
+        }
+
+        const row = document.createElement('details');
+        const summary = document.createElement('summary');
+        const content = document.createElement('div');
+        const description = document.createElement('p');
+        const budgetLine = document.createElement('p');
+        const budgetLabel = document.createElement('strong');
+
+        row.className = 'layer-row layer-control';
+        summary.append(createCheckbox(item.title, item.layer_ids, map), ` ${item.title}`);
+        content.className = 'layer-content';
+        description.textContent = item.description;
+        budgetLine.className = 'layer-budget';
+        budgetLabel.textContent = 'Szacowany budżet:';
+        budgetLine.append(
+          budgetLabel,
+          ` ${formatter.format(budgetValue)} ${budget.currency}`
+        );
+        content.append(description, budgetLine);
+        row.append(summary, content);
+        container.append(row);
+      });
+    };
+
+    const renderBackgroundItems = (items, map) => {
+      const container = document.querySelector('#background-layers');
+      items.forEach((item) => {
+        const row = document.createElement('label');
+        row.className = 'background-layer layer-control';
+        row.title = item.description;
+        row.append(createCheckbox(item.title, item.layer_ids, map), ` ${item.title}`);
+        container.append(row);
+      });
+    };
+
+    const addSources = (map, sources) => {
+      Object.entries(sources).forEach(([id, source]) => {
+        if (!supportedSourceTypes.has(source.type)) {
+          throw new Error(`Nieobsługiwany typ źródła "${source.type}" dla "${id}".`);
+        }
+        if (source.type === 'geojson') {
+          map.addSource(id, {type: 'geojson', data: source.url});
           return;
         }
-        const cogUrl = new URL(`./${file}`, window.location.href).href;
-
+        const cogUrl = new URL(source.url, window.location.href).href;
         map.addSource(id, {
           type: 'raster',
           url: `cog://${cogUrl}`,
           tileSize: 256
         });
-        map.addLayer({
-          id,
-          type: 'raster',
-          source: id,
-          paint: {
-            'raster-opacity': opacity,
-            'raster-fade-duration': 0
-          }
-        });
       });
+    };
 
-      map.addSource('parcels', {
+    const addCallout = (map, layer, title) => {
+      const sourceId = `${layer.id}-callout`;
+      const shadowLayerId = `${sourceId}-shadow`;
+      const lineLayerId = `${sourceId}-line`;
+      const visible = layerVisibility.get(layer.id) !== false;
+      const opacity = layer.paint?.['raster-opacity'] ?? 1;
+      const element = document.createElement('div');
+      const image = document.createElement('img');
+
+      map.addSource(sourceId, {
         type: 'geojson',
-        data: './park_parcels.geojson'
+        data: {
+          type: 'Feature',
+          properties: {},
+          geometry: {
+            type: 'LineString',
+            coordinates: [layer.callout.position, layer.callout.target]
+          }
+        }
       });
       map.addLayer({
-        id: 'parcels-fill',
-        type: 'fill',
-        source: 'parcels',
-        paint: {
-          'fill-color': '#fff4c2',
-          'fill-opacity': 0.12
-        }
-      }, 'existing-trees');
-      map.addLayer({
-        id: 'parcels-line',
+        id: shadowLayerId,
         type: 'line',
-        source: 'parcels',
-        paint: {
-          'line-color': '#6b4700',
-          'line-opacity': 0.95,
-          'line-width': 2
-        }
-      }, 'existing-trees');
-      map.addLayer({
-        id: 'parcels-label',
-        type: 'symbol',
-        source: 'parcels',
+        source: sourceId,
         layout: {
-          'text-field': ['get', 'parcel'],
-          'text-size': 15,
-          'text-allow-overlap': true,
-          'text-ignore-placement': true
+          visibility: visible ? 'visible' : 'none'
         },
         paint: {
-          'text-color': '#4b3200',
-          'text-halo-color': '#ffffff',
-          'text-halo-width': 2,
-          'text-opacity': 1
+          'line-color': '#000000',
+          'line-opacity': 0.4 * opacity,
+          'line-width': 6,
+          'line-blur': 2
         }
       });
-      try {
-        await loadProposalCallouts();
-      } catch (error) {
-        showError(error.message);
-      }
-    });
-
-    map.on('error', ({error}) => {
-      showError(error?.message || 'Nie udało się wczytać mapy lub warstwy.');
-    });
-
-    document.querySelectorAll('.layer-control').forEach((row) => {
-      const id = row.dataset.layer;
-      const checkbox = row.querySelector('input[type="checkbox"]');
-
-      checkbox.addEventListener('click', (event) => {
-        event.stopPropagation();
-      });
-
-      checkbox.addEventListener('change', () => {
-        const layerIds = id === 'parcels'
-          ? ['parcels-fill', 'parcels-line', 'parcels-label']
-          : [id];
-        layerIds.forEach((layerId) => {
-          if (map.getLayer(layerId)) {
-            map.setLayoutProperty(layerId, 'visibility', checkbox.checked ? 'visible' : 'none');
-          }
-        });
-        const layer = layers.find(({id: layerId}) => layerId === id);
-        if (layer?.calloutType) {
-          setCalloutVisibility(layer.calloutType, checkbox.checked);
+      map.addLayer({
+        id: lineLayerId,
+        type: 'line',
+        source: sourceId,
+        layout: {
+          visibility: visible ? 'visible' : 'none'
+        },
+        paint: {
+          'line-color': '#ffffff',
+          'line-opacity': opacity,
+          'line-width': 3
         }
       });
-    });
+      calloutLineLayers.set(layer.id, [shadowLayerId, lineLayerId]);
 
+      element.className = 'zone-callout';
+      element.title = title;
+      element.hidden = !visible;
+      element.style.opacity = opacity;
+      image.src = layer.callout.img_src;
+      image.alt = `${title} - zdjęcie`;
+      element.append(image);
+
+      const marker = new maplibregl.Marker({
+        element,
+        anchor: 'center'
+      }).setLngLat(layer.callout.position).addTo(map);
+      calloutMarkers.set(layer.id, marker);
+    };
+
+    const addLayers = (map, layers, sources, layerTitles) => {
+      const layersWithCallouts = [];
+      layers.forEach((layer) => {
+        if (!supportedLayerTypes.has(layer.type)) {
+          throw new Error(`Nieobsługiwany typ warstwy "${layer.type}" dla "${layer.id}".`);
+        }
+        if (!sources[layer.source]) {
+          throw new Error(`Brak źródła "${layer.source}" dla warstwy "${layer.id}".`);
+        }
+        const {callout, ...mapLayer} = layer;
+        if (layerVisibility.get(layer.id) === false) {
+          mapLayer.layout = {...mapLayer.layout, visibility: 'none'};
+        }
+        map.addLayer(mapLayer);
+        if (callout) {
+          layersWithCallouts.push(layer);
+        }
+      });
+      layersWithCallouts.forEach((layer) => {
+        addCallout(map, layer, layerTitles.get(layer.id) || layer.id);
+      });
+    };
+
+    const initialize = async () => {
+      const [page, sources, layers, investmentItems, backgroundItems, budget] = await Promise.all([
+        fetchJson('./data/page.json'),
+        fetchJson('./data/sources.json'),
+        fetchJson('./data/layers.json'),
+        fetchJson('./data/investment-items.json'),
+        fetchJson('./data/background-items.json'),
+        fetchJson('./data/budget.json')
+      ]);
+      const layerTitles = new Map(
+        [...investmentItems, ...backgroundItems].flatMap((item) =>
+          item.layer_ids.map((layerId) => [layerId, item.title])
+        )
+      );
+
+      renderPage(page);
+      maplibregl.addProtocol('cog', MaplibreCOGProtocol.cogProtocol);
+      const map = new maplibregl.Map({
+        container: 'map',
+        style: {
+          version: 8,
+          sources: {
+            osm: {
+              type: 'raster',
+              tiles: ['https://tile.openstreetmap.org/{z}/{x}/{y}.png'],
+              tileSize: 256,
+              attribution: '© OpenStreetMap contributors'
+            }
+          },
+          layers: [
+            {
+              id: 'osm',
+              type: 'raster',
+              source: 'osm'
+            }
+          ]
+        },
+        bounds: proposalBounds,
+        maxBounds: satelliteBounds,
+        minZoom: 13,
+        maxZoom: 22,
+        fitBoundsOptions: getFitBoundsOptions(),
+        attributionControl: true
+      });
+
+      renderInvestmentItems(investmentItems, budget, map);
+      renderBackgroundItems(backgroundItems, map);
+      map.addControl(new maplibregl.NavigationControl(), 'top-right');
+      map.addControl(new maplibregl.ScaleControl({unit: 'metric'}), 'bottom-right');
+      mobileLegendQuery.addEventListener('change', () => {
+        setLegendOpen(false);
+        map.resize();
+        map.fitBounds(proposalBounds, getFitBoundsOptions());
+      });
+      map.on('load', () => {
+        addSources(map, sources);
+        addLayers(map, layers, sources, layerTitles);
+      });
+      map.on('error', ({error}) => {
+        showError(error?.message || 'Nie udało się wczytać mapy lub warstwy.');
+      });
+    };
+
+    initialize().catch((error) => {
+      showError(error.message);
+    });
   </script>
 </body>
 </html>

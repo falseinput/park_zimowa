@@ -1,0 +1,50 @@
+{
+  "satellite": {
+    "type": "cog",
+    "url": "./sources/satellite.tif"
+  },
+  "mpzp": {
+    "type": "cog",
+    "url": "./sources/mpzp.tif"
+  },
+  "park-area": {
+    "type": "geojson",
+    "url": "./sources/park_area.geojson"
+  },
+  "parcels": {
+    "type": "geojson",
+    "url": "./sources/park_parcels.geojson"
+  },
+  "existing-trees": {
+    "type": "geojson",
+    "url": "./sources/existing_trees.geojson"
+  },
+  "new-plantings": {
+    "type": "geojson",
+    "url": "./sources/new_trees.geojson"
+  },
+  "parking": {
+    "type": "cog",
+    "url": "./sources/parking.tif"
+  },
+  "court": {
+    "type": "cog",
+    "url": "./sources/court.tif"
+  },
+  "children-play": {
+    "type": "cog",
+    "url": "./sources/recreation_children_play.tif"
+  },
+  "active-adventure": {
+    "type": "cog",
+    "url": "./sources/recreation_active_adventure.tif"
+  },
+  "outdoor-fitness": {
+    "type": "cog",
+    "url": "./sources/recreation_outdoor_fitness.tif"
+  },
+  "relax-zone": {
+    "type": "cog",
+    "url": "./sources/recreation_relax_zone.tif"
+  }
+}

@@ -1,16 +1,14 @@
 {
-  "waluta": "PLN",
-  "wartosci": {
-    "brutto": true,
-    "charakter": "szacunki planistyczne do Budżetu Obywatelskiego Torunia"
+  "currency": "PLN",
+  "estimates": {
+    "gross": true
   },
-  "projekty": [
+  "projects": [
     {
-      "nazwa": "Boisko wielofunkcyjne",
-      "zakres": "siatkówka, tenis, koszykówka, bez oświetlenia",
-      "budzet": 300000,
-      "utrzymanie_roczne": 25000,
-      "koszty": {
+      "id": "Boisko wielofunkcyjne",
+      "budget": 300000,
+      "annual_maintenance": 25000,
+      "costs": {
         "roboty_ziemne_i_przygotowanie_terenu": 35000,
         "podbudowa_i_odwodnienie": 55000,
         "nawierzchnia_poliuretanowa": 95000,
@@ -23,12 +21,12 @@
       }
     },
     {
-      "nazwa": "Park street workout",
-      "powierzchnia_m2": 150,
-      "budzet": 150000,
-      "utrzymanie_roczne": 15000,
-      "nawierzchnia": "piasek",
-      "koszty": {
+      "id": "Park street workout",
+      "area": 150,
+      "area_unit": "m²",
+      "budget": 150000,
+      "annual_maintenance": 15000,
+      "costs": {
         "zestaw_street_workout_8_10_elementow": 45000,
         "piasek": 15000,
         "przygotowanie_terenu_i_korytowanie": 18000,
@@ -43,11 +41,10 @@
       }
     },
     {
-      "nazwa": "Plac zabaw dla większych dzieci",
-      "grupa_wiekowa": "ok. 7-14 lat",
-      "budzet": 125000,
-      "utrzymanie_roczne": 8000,
-      "koszty": {
+      "id": "Plac zabaw dla większych dzieci",
+      "budget": 125000,
+      "annual_maintenance": 8000,
+      "costs": {
         "tyrolka_25_30_m": 30000,
         "duzy_zestaw_wspinaczkowy_lub_linarium": 30000,
         "trampoliny_ziemne_2_szt": 12000,
@@ -62,11 +59,10 @@
       }
     },
     {
-      "nazwa": "Plac zabaw dla mniejszych dzieci",
-      "grupa_wiekowa": "ok. 2-7 lat",
-      "budzet": 95000,
-      "utrzymanie_roczne": 7000,
-      "koszty": {
+      "id": "Plac zabaw dla mniejszych dzieci",
+      "budget": 95000,
+      "annual_maintenance": 7000,
+      "costs": {
         "maly_zestaw_zabawowy_z_wieza_i_zjezdzalnia": 25000,
         "hustawki_2_stanowiska": 10000,
         "hustawka_bocianie_gniazdo": 8000,
@@ -83,11 +79,15 @@
       }
     },
     {
-      "nazwa": "Niewielki wybieg dla psów",
-      "powierzchnia_m2": "400-500",
-      "budzet": 90000,
-      "utrzymanie_roczne": 12000,
-      "koszty": {
+      "id": "Niewielki wybieg dla psów",
+      "area": {
+        "min": 400,
+        "max": 500
+      },
+      "area_unit": "m²",
+      "budget": 90000,
+      "annual_maintenance": 12000,
+      "costs": {
         "ogrodzenie_i_bramy_ze_sluza": 35000,
         "przygotowanie_i_zagospodarowanie_terenu": 12000,
         "przeszkody_agility": 12000,
@@ -101,11 +101,15 @@
       }
     },
     {
-      "nazwa": "Mała strefa rekreacji",
-      "powierzchnia_m2": "200-300",
-      "budzet": 75000,
-      "utrzymanie_roczne": 8000,
-      "koszty": {
+      "id": "Mała strefa rekreacji",
+      "area": {
+        "min": 200,
+        "max": 300
+      },
+      "area_unit": "m²",
+      "budget": 75000,
+      "annual_maintenance": 8000,
+      "costs": {
         "lawki_4_szt": 12000,
         "hamaki_miejskie_4_szt": 14000,
         "stol_do_ping_ponga": 7000,
@@ -118,11 +122,10 @@
       }
     },
     {
-      "nazwa": "Parking",
-      "liczba_miejsc": 48,
-      "budzet": 300000,
-      "nawierzchnia": "kostka brukowa",
-      "koszty": {
+      "id": "Parking",
+      "budget": 300000,
+      "annual_maintenance": null,
+      "costs": {
         "roboty_ziemne_i_przygotowanie_terenu": 45000,
         "podbudowa": 85000,
         "kostka_brukowa": 115000,
@@ -133,17 +136,10 @@
       }
     },
     {
-      "nazwa": "Nasadzenia drzew",
-      "liczba_drzew": 41,
-      "parametry": {
-        "wysokosc_orientacyjna_m": "4-5",
-        "obwod_pnia_cm": "16-18",
-        "warunki": "suchy, piaszczysty grunt",
-        "nawadnianie": "z istniejącego przyłącza w rejonie ul. Zimowej",
-        "pielegnacja": "3 lata"
-      },
-      "budzet": 190000,
-      "koszty": {
+      "id": "Nasadzenia drzew",
+      "budget": 190000,
+      "annual_maintenance": null,
+      "costs": {
         "drzewa_transport_i_sadzenie": 80000,
         "wymiana_i_uzdatnienie_gruntu": 25000,
         "palikowanie_i_stabilizacja": 7500,
@@ -153,10 +149,5 @@
         "rezerwa": 19500
       }
     }
-  ],
-  "podsumowanie": {
-    "laczny_budzet_inwestycyjny": 1025000,
-    "laczne_szacunkowe_utrzymanie_roczne": 75000,
-    "uwaga": "Koszty utrzymania są orientacyjne i nie muszą być częścią kwoty inwestycyjnej projektu BO."
-  }
+  ]
 }

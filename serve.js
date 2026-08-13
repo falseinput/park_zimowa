@@ -12,6 +12,7 @@ const mimeTypes = {
   '.geojson': 'application/geo+json; charset=utf-8',
   '.jpeg': 'image/jpeg',
   '.jpg': 'image/jpeg',
+  '.json': 'application/json; charset=utf-8',
   '.mjs': 'text/javascript; charset=utf-8',
   '.svg': 'image/svg+xml; charset=utf-8',
   '.tif': 'image/tiff',
