@@ -20,8 +20,7 @@
     }
 
     .panel {
-      position: fixed;
-      z-index: 2;
+      position: relative;
       inset: 0 auto 0 0;
       box-sizing: border-box;
       width: min(375px, 100vw);
@@ -134,6 +133,7 @@
       margin-top: 18px;
     }
 
+    .layers strong,
     .background-layers strong {
       color: #52606d;
       font-size: 12px;
@@ -174,6 +174,7 @@
 
     @media (max-width: 700px) {
       .panel {
+        position: fixed;
         z-index: 3;
         inset: 0;
         width: 100vw;
@@ -260,7 +261,7 @@
   </style>
 </head>
 <body>
-  <div id="map"></div>
+  <section style="display: flex;height: 100vh; margin: 0;">
   <button
     id="legend-toggle"
     class="legend-toggle"
@@ -269,27 +270,22 @@
     aria-expanded="false"
   >Pokaż legendę</button>
   <section id="legend-panel" class="panel" aria-label="Legenda mapy">
-    <strong>Park Zimowa</strong>
+    <h2>Park Zimowa</h2>
+    Projekt zagospodarowania terenu zieleni miejskiej w rejonie ulicy Zimowej w Toruniu. Celem projektu jest stworzenie atrakcyjnej przestrzeni sportowo-rekreacyjnej dla mieszkańców.
+     <p>Lokalizacja: działki 498, 499, 503, 504, 505/1, 505/2. Obszar 140.19-U/ZP2 MPZP.</p>
     <div class="layers">
-      <details class="layer-row layer-control" data-layer="existing-trees">
+      <strong>Elementy inwestycji</strong>
+      <!-- <details class="layer-row layer-control" data-layer="existing-trees">
         <summary><input type="checkbox" checked aria-label="Widoczność: Istniejące drzewa"> Istniejące drzewa</summary>
         <div class="layer-content">
           <p>Drzewa znajdujące się obecnie na terenie parku i uwzględnione w koncepcji.</p>
-          <p class="layer-budget"><strong>Szacowany budżet:</strong> nie dotyczy</p>
         </div>
-      </details>
+      </details> -->
       <details class="layer-row layer-control" data-layer="new-plantings">
         <summary><input type="checkbox" checked aria-label="Widoczność: Nowe nasadzenia"> Nowe nasadzenia</summary>
         <div class="layer-content">
           <p>Planowane nasadzenie 41 drzew wraz z przygotowaniem gruntu, nawadnianiem i pielęgnacją.</p>
           <p class="layer-budget"><strong>Szacowany budżet:</strong> <span data-budget-projects="Nasadzenia drzew">ładowanie…</span></p>
-        </div>
-      </details>
-      <details class="layer-row layer-control" data-layer="parking">
-        <summary><input type="checkbox" checked aria-label="Widoczność: Parking"> Parking</summary>
-        <div class="layer-content">
-          <p>Proponowana lokalizacja miejsc postojowych obsługujących teren parku.</p>
-          <p class="layer-budget"><strong>Szacowany budżet:</strong> brak odrębnej wyceny</p>
         </div>
       </details>
       <details class="layer-row layer-control" data-layer="court">
@@ -327,6 +323,13 @@
           <p class="layer-budget"><strong>Szacowany budżet:</strong> <span data-budget-projects="Mała strefa rekreacji">ładowanie…</span></p>
         </div>
       </details>
+      <details class="layer-row layer-control" data-layer="parking">
+        <summary><input type="checkbox" checked aria-label="Widoczność: Parking"> Parking</summary>
+        <div class="layer-content">
+          <p>Proponowana lokalizacja miejsc postojowych obsługujących teren parku.</p>
+          <p class="layer-budget"><strong>Szacowany budżet:</strong> 625 000 PLN</p>
+        </div>
+      </details>
     </div>
     <div class="background-layers">
       <strong>Warstwy tła</strong>
@@ -339,15 +342,20 @@
       <label class="background-layer layer-control" data-layer="park-area">
         <input type="checkbox" checked> Teren parku
       </label>
+      <label class="background-layer layer-control" data-layer="mpzp">
+        <input type="checkbox" checked> MPZP
+      </label>
     </div>
   </section>
+  <div id="map"></div>
+</section>
 
   <script src="./vendor/maplibre-cog-protocol.js"></script>
   <script type="module">
     import * as maplibregl from './vendor/maplibre-gl.mjs';
 
     const proposalBounds = [
-      [18.6326500000000, 52.9935739039870],
+      [18.6356500000000, 52.9935739039870],
       [18.6398000000000, 52.9965000000000]
     ];
     const satelliteBounds = [
@@ -356,10 +364,11 @@
     ];
     const layers = [
       {id: 'satellite', file: 'satellite.tif', opacity: 0.78},
-      {id: 'park-area', file: 'park_area.tif', opacity: 0.34},
-      {id: 'existing-trees', file: 'existing_trees.tif', opacity: 1},
-      {id: 'new-plantings', file: 'new_plantings.tif', opacity: 1},
-      {id: 'parking', file: 'parking.tif', opacity: 0.82},
+      {id: 'mpzp', file: 'mpzp.tif', opacity: 0.68},
+      {id: 'park-area', file: 'park_area.json', opacity: 0.27, fillColor: 'green'},
+      {id: 'existing-trees', file: 'existing_trees.json', opacity: 0.8, fillColor: '#41aa50', fillOutlineColor: '#196928'},
+      {id: 'new-plantings', file: 'new_trees.json', opacity: 0.8, fillColor: '#41aa50', fillOutlineColor: '#196928'},
+      {id: 'parking', file: 'parking.tif', opacity: 0.72},
       {id: 'court', file: 'court.tif', opacity: 1, calloutType: 'sports_field'},
       {id: 'children-play', file: 'recreation_children_play.tif', opacity: 0.88, calloutType: 'children_play'},
       {id: 'active-adventure', file: 'recreation_active_adventure.tif', opacity: 0.88, calloutType: 'active_adventure'},
@@ -390,13 +399,13 @@
     const legendPanel = document.querySelector('#legend-panel');
     const getFitBoundsOptions = () => mobileLegendQuery.matches
       ? {padding: 16}
-      : {padding: {top: 40, right: 40, bottom: 40, left: 415}};
+      : {padding: {top: 40, right: 40, bottom: 40, left: 40}};
 
     const setLegendOpen = (open) => {
       const mobileOpen = mobileLegendQuery.matches && open;
       document.body.classList.toggle('legend-open', mobileOpen);
       legendToggle.setAttribute('aria-expanded', String(mobileOpen));
-      legendToggle.textContent = mobileOpen ? 'Pokaż mapę' : 'Pokaż legendę';
+      legendToggle.textContent = mobileOpen ? 'Pokaż mapę' : 'Pokaż opis';
       legendPanel.setAttribute('aria-hidden', String(mobileLegendQuery.matches && !mobileOpen));
       legendPanel.inert = mobileLegendQuery.matches && !mobileOpen;
     };
@@ -580,7 +589,24 @@
     };
 
     map.on('load', async () => {
-      layers.forEach(({id, file, opacity}) => {
+      layers.forEach(({id, file, opacity, fillColor, fillOutlineColor}) => {
+        if (file.endsWith('.json')) {
+          map.addSource(id, {
+            type: 'geojson',
+            data: `./${file}`
+          });
+          map.addLayer({
+            id,
+            type: 'fill',
+            source: id,
+            paint: {
+              'fill-outline-color': fillOutlineColor ?? '#000000',
+              'fill-color': fillColor,
+              'fill-opacity': opacity
+            }
+          });
+          return;
+        }
         const cogUrl = new URL(`./${file}`, window.location.href).href;
 
         map.addSource(id, {
