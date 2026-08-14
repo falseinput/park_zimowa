@@ -3,8 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="description" content="">
-  <title></title>
+  <meta name="description" content="Projekt zagospodarowania terenu zieleni miejskiej w rejonie ulicy Zimowej w Toruniu. Celem projektu jest stworzenie atrakcyjnej przestrzeni sportowo-rekreacyjnej dla mieszkańców.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pl_PL">
+  <meta property="og:title" content="Park Zimowa">
+  <meta property="og:description" content="Projekt zagospodarowania terenu zieleni miejskiej w rejonie ulicy Zimowej w Toruniu. Celem projektu jest stworzenie atrakcyjnej przestrzeni sportowo-rekreacyjnej dla mieszkańców.">
+  <meta property="og:image" content="./staticImages/og-image.jpg">
+  <meta property="og:image:alt" content="Wizualizacja projektu Park Zimowa">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Park Zimowa">
+  <meta name="twitter:description" content="Projekt zagospodarowania terenu zieleni miejskiej w rejonie ulicy Zimowej w Toruniu. Celem projektu jest stworzenie atrakcyjnej przestrzeni sportowo-rekreacyjnej dla mieszkańców.">
+  <meta name="twitter:image" content="./staticImages/og-image.jpg">
+  <title>Park Zimowa</title>
   <link rel="icon" href="data:,">
   <link rel="stylesheet" href="./vendor/maplibre-gl.css">
   <style>
@@ -271,9 +281,9 @@
     aria-expanded="false"
   >Pokaż legendę</button>
   <section id="legend-panel" class="panel" aria-label="Legenda mapy">
-    <h2 data-page-title></h2>
-    <p data-page-description></p>
-    <p data-location-description></p>
+    <h2>Park Zimowa</h2>
+    <p>Projekt zagospodarowania terenu zieleni miejskiej w rejonie ulicy Zimowej w Toruniu. Celem projektu jest stworzenie atrakcyjnej przestrzeni sportowo-rekreacyjnej dla mieszkańców.</p>
+    <p>Lokalizacja: działki 498, 499, 503, 504, 505/1, 505/2. Obszar 140.19-U/ZP2 MPZP.</p>
     <div id="investment-layers" class="layers">
       <strong>Elementy inwestycji</strong>
     </div>
@@ -335,14 +345,6 @@
         throw new Error(`Nie udało się wczytać ${url} (${response.status}).`);
       }
       return response.json();
-    };
-
-    const renderPage = (page) => {
-      document.title = page.title;
-      document.querySelector('meta[name="description"]').content = page.description;
-      document.querySelector('[data-page-title]').textContent = page.title;
-      document.querySelector('[data-page-description]').textContent = page.description;
-      document.querySelector('[data-location-description]').textContent = page.location_description;
     };
 
     const setLayerVisibility = (map, layerIds, visible) => {
@@ -529,8 +531,7 @@
     };
 
     const initialize = async () => {
-      const [page, sources, layers, investmentItems, backgroundItems, budget] = await Promise.all([
-        fetchJson('./data/page.json'),
+      const [sources, layers, investmentItems, backgroundItems, budget] = await Promise.all([
         fetchJson('./data/sources.json'),
         fetchJson('./data/layers.json'),
         fetchJson('./data/investment-items.json'),
@@ -543,7 +544,6 @@
         )
       );
 
-      renderPage(page);
       maplibregl.addProtocol('cog', MaplibreCOGProtocol.cogProtocol);
       const map = new maplibregl.Map({
         container: 'map',
