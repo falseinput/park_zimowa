@@ -15,6 +15,10 @@
     "type": "geojson",
     "url": "./sources/park_parcels.geojson"
   },
+  "egib-parcels": {
+    "type": "vector",
+    "url": "https://falseinput.github.io/torun_parcels/api/v1/parcels.json"
+  },
   "existing-trees": {
     "type": "geojson",
     "url": "./sources/existing_trees.geojson"

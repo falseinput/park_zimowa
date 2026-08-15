@@ -9,6 +9,32 @@
     }
   },
   {
+    "id": "egib-parcels-fill",
+    "type": "fill",
+    "source": "egib-parcels",
+    "source-layer": "parcels",
+    "paint": {
+      "fill-color": [
+        "match", ["get", "klasa"],
+        ["skarb_panstwa", "gmina", "wojewodztwo_powiat"], "#2a78d6",
+        ["osoba_fizyczna"], "#eb6834",
+        "#1baf7a"
+      ],
+      "fill-opacity": 0.25
+    }
+  },
+  {
+    "id": "egib-parcels-line",
+    "type": "line",
+    "source": "egib-parcels",
+    "source-layer": "parcels",
+    "paint": {
+      "line-color": "#2f3b45",
+      "line-opacity": 0.55,
+      "line-width": ["interpolate", ["linear"], ["zoom"], 14, 0.4, 18, 1.2]
+    }
+  },
+  {
     "id": "mpzp",
     "type": "raster",
     "source": "mpzp",

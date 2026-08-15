@@ -12,6 +12,13 @@
     "layer_ids": ["parcels-fill", "parcels-line"]
   },
   {
+    "title": "Własność działek (EGiB)",
+    "description": "Działki ewidencyjne w otoczeniu parku, pokolorowane według formy własności: niebieski - własność publiczna, pomarańczowy - osoby fizyczne, zielony - pozostałe podmioty.",
+    "budget_id": null,
+    "visible": false,
+    "layer_ids": ["egib-parcels-fill", "egib-parcels-line"]
+  },
+  {
     "title": "Teren parku",
     "description": "Granica terenu planowanego parku.",
     "budget_id": null,

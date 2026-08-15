@@ -295,6 +295,7 @@
 </section>
 
   <script src="./vendor/maplibre-cog-protocol.js"></script>
+  <script src="./vendor/pmtiles.js"></script>
   <script type="module">
     import * as maplibregl from './vendor/maplibre-gl.mjs';
 
@@ -307,7 +308,7 @@
       [18.6464155674838, 53.0000949305960]
     ];
     const supportedLayerTypes = new Set(['fill', 'line', 'raster']);
-    const supportedSourceTypes = new Set(['cog', 'geojson']);
+    const supportedSourceTypes = new Set(['cog', 'geojson', 'vector']);
     const layerVisibility = new Map();
     const calloutMarkers = new Map();
     const calloutLineLayers = new Map();
@@ -365,12 +366,12 @@
       });
     };
 
-    const createCheckbox = (title, layerIds, map) => {
+    const createCheckbox = (title, layerIds, map, visible = true) => {
       const checkbox = document.createElement('input');
       checkbox.type = 'checkbox';
-      checkbox.checked = true;
+      checkbox.checked = visible;
       checkbox.setAttribute('aria-label', `Widoczność: ${title}`);
-      layerIds.forEach((layerId) => layerVisibility.set(layerId, true));
+      layerIds.forEach((layerId) => layerVisibility.set(layerId, visible));
       checkbox.addEventListener('click', (event) => {
         event.stopPropagation();
       });
@@ -420,7 +421,10 @@
         const row = document.createElement('label');
         row.className = 'background-layer layer-control';
         row.title = item.description;
-        row.append(createCheckbox(item.title, item.layer_ids, map), ` ${item.title}`);
+        row.append(
+          createCheckbox(item.title, item.layer_ids, map, item.visible !== false),
+          ` ${item.title}`
+        );
         container.append(row);
       });
     };
@@ -432,6 +436,16 @@
         }
         if (source.type === 'geojson') {
           map.addSource(id, {type: 'geojson', data: source.url});
+          return;
+        }
+        if (source.type === 'vector') {
+          // url points at a TileJSON document. MapLibre reads its tiles[]
+          // entry and fetches each tile through the registered protocol, so
+          // attribution, bounds and zoom range come from the served metadata.
+          map.addSource(id, {
+            type: 'vector',
+            url: new URL(source.url, window.location.href).href
+          });
           return;
         }
         const cogUrl = new URL(source.url, window.location.href).href;
@@ -545,6 +559,7 @@
       );
 
       maplibregl.addProtocol('cog', MaplibreCOGProtocol.cogProtocol);
+      maplibregl.addProtocol('pmtiles', new pmtiles.Protocol().tile);
       const map = new maplibregl.Map({
         container: 'map',
         style: {
