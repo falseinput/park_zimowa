@@ -308,7 +308,7 @@
       [18.6464155674838, 53.0000949305960]
     ];
     const supportedLayerTypes = new Set(['fill', 'line', 'raster']);
-    const supportedSourceTypes = new Set(['cog', 'geojson', 'vector']);
+    const supportedSourceTypes = new Set(['cog', 'geojson', 'vector', 'wms']);
     const layerVisibility = new Map();
     const calloutMarkers = new Map();
     const calloutLineLayers = new Map();
@@ -445,6 +445,20 @@
           map.addSource(id, {
             type: 'vector',
             url: new URL(source.url, window.location.href).href
+          });
+          return;
+        }
+        if (source.type === 'wms') {
+          // url is a WMS GetMap request with a {bbox-epsg-3857} placeholder;
+          // MapLibre substitutes the extent of each 256 px tile it needs.
+          // minzoom keeps us from asking services that stop drawing above a
+          // scale threshold (GUGiK/EGiB) for tiles they return empty.
+          map.addSource(id, {
+            type: 'raster',
+            tiles: [source.url],
+            tileSize: 256,
+            ...(source.minzoom === undefined ? {} : {minzoom: source.minzoom}),
+            ...(source.attribution === undefined ? {} : {attribution: source.attribution})
           });
           return;
         }

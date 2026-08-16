@@ -20,7 +20,7 @@
         ["osoba_fizyczna"], "#eb6834",
         "#1baf7a"
       ],
-      "fill-opacity": 0.25
+      "fill-opacity": 0.85
     }
   },
   {
@@ -54,22 +54,12 @@
     }
   },
   {
-    "id": "parcels-fill",
-    "type": "fill",
+    "id": "parcels",
+    "type": "raster",
     "source": "parcels",
     "paint": {
-      "fill-color": "#fff4c2",
-      "fill-opacity": 0.12
-    }
-  },
-  {
-    "id": "parcels-line",
-    "type": "line",
-    "source": "parcels",
-    "paint": {
-      "line-color": "#6b4700",
-      "line-opacity": 0.95,
-      "line-width": 2
+      "raster-opacity": 0.9,
+      "raster-fade-duration": 0
     }
   },
   {

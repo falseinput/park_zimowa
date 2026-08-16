@@ -7,9 +7,9 @@
   },
   {
     "title": "Działki",
-    "description": "Granice działek objętych projektem.",
+    "description": "Granice działek ewidencyjnych wraz z numerami i budynkami (dane GUGiK). Widoczne po przybliżeniu mapy.",
     "budget_id": null,
-    "layer_ids": ["parcels-fill", "parcels-line"]
+    "layer_ids": ["parcels"]
   },
   {
     "title": "Własność działek (EGiB)",
