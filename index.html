@@ -307,7 +307,7 @@
       [18.6248187107704, 52.9890714232455],
       [18.6464155674838, 53.0000949305960]
     ];
-    const supportedLayerTypes = new Set(['fill', 'line', 'raster']);
+    const supportedLayerTypes = new Set(['fill', 'line', 'raster', 'symbol']);
     const supportedSourceTypes = new Set(['cog', 'geojson', 'vector', 'wms']);
     const layerVisibility = new Map();
     const calloutMarkers = new Map();
@@ -578,6 +578,11 @@
         container: 'map',
         style: {
           version: 8,
+          // Parcel numbers are drawn as a symbol layer, which MapLibre cannot
+          // render without a glyphs endpoint; the hosted ones all want an API
+          // key. Vendored alongside maplibre and pmtiles so the viewer keeps
+          // working offline and does not wait on another repo's deploy.
+          glyphs: './vendor/glyphs/{fontstack}/{range}.pbf',
           sources: {
             osm: {
               type: 'raster',

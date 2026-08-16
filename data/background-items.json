@@ -7,16 +7,22 @@
   },
   {
     "title": "Działki",
-    "description": "Granice działek ewidencyjnych wraz z numerami i budynkami (dane GUGiK). Widoczne po przybliżeniu mapy.",
+    "description": "Granice działek ewidencyjnych wraz z numerami (EGiB Toruń). Numery widoczne po przybliżeniu mapy.",
     "budget_id": null,
-    "layer_ids": ["parcels"]
+    "layer_ids": ["egib-parcels-line", "egib-parcels-label"]
+  },
+  {
+    "title": "Budynki",
+    "description": "Obrysy budynków z ewidencji gruntów i budynków (dane GUGiK). Widoczne po przybliżeniu mapy.",
+    "budget_id": null,
+    "layer_ids": ["buildings"]
   },
   {
     "title": "Własność działek (EGiB)",
     "description": "Działki ewidencyjne w otoczeniu parku, pokolorowane według formy własności: niebieski - własność publiczna, pomarańczowy - osoby fizyczne, zielony - pozostałe podmioty.",
     "budget_id": null,
     "visible": false,
-    "layer_ids": ["egib-parcels-fill", "egib-parcels-line"]
+    "layer_ids": ["egib-parcels-fill"]
   },
   {
     "title": "Teren parku",

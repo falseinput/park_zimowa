@@ -11,11 +11,11 @@
     "type": "geojson",
     "url": "./sources/park_area.geojson"
   },
-  "parcels": {
+  "buildings": {
     "type": "wms",
-    "url": "https://uldk.gugik.gov.pl/cgi-bin/KrajowaIntegracjaEwidencjiGruntow?VERSION=1.1.1&SERVICE=WMS&REQUEST=GetMap&LAYERS=dzialki,numery_dzialek,budynki&SRS=EPSG:3857&TRANSPARENT=TRUE&FORMAT=image/png&width=256&height=256&bbox={bbox-epsg-3857}",
+    "url": "https://uldk.gugik.gov.pl/cgi-bin/KrajowaIntegracjaEwidencjiGruntow?VERSION=1.1.1&SERVICE=WMS&REQUEST=GetMap&LAYERS=budynki&SRS=EPSG:3857&TRANSPARENT=TRUE&FORMAT=image/png&width=256&height=256&bbox={bbox-epsg-3857}",
     "minzoom": 17,
-    "attribution": "Dane ewidencyjne: GUGiK"
+    "attribution": "Budynki: GUGiK"
   },
   "egib-parcels": {
     "type": "vector",

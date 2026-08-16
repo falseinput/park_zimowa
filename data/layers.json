@@ -24,17 +24,6 @@
     }
   },
   {
-    "id": "egib-parcels-line",
-    "type": "line",
-    "source": "egib-parcels",
-    "source-layer": "parcels",
-    "paint": {
-      "line-color": "#2f3b45",
-      "line-opacity": 0.55,
-      "line-width": ["interpolate", ["linear"], ["zoom"], 14, 0.4, 18, 1.2]
-    }
-  },
-  {
     "id": "mpzp",
     "type": "raster",
     "source": "mpzp",
@@ -54,12 +43,42 @@
     }
   },
   {
-    "id": "parcels",
+    "id": "buildings",
     "type": "raster",
-    "source": "parcels",
+    "source": "buildings",
     "paint": {
       "raster-opacity": 0.9,
       "raster-fade-duration": 0
+    }
+  },
+  {
+    "id": "egib-parcels-line",
+    "type": "line",
+    "source": "egib-parcels",
+    "source-layer": "parcels",
+    "paint": {
+      "line-color": "#2f3b45",
+      "line-opacity": 0.75,
+      "line-width": ["interpolate", ["linear"], ["zoom"], 14, 0.4, 18, 1.2, 20, 2]
+    }
+  },
+  {
+    "id": "egib-parcels-label",
+    "type": "symbol",
+    "source": "egib-parcels",
+    "source-layer": "parcels",
+    "minzoom": 17,
+    "layout": {
+      "text-field": ["get", "nr"],
+      "text-font": ["Noto Sans Regular"],
+      "text-size": ["interpolate", ["linear"], ["zoom"], 17, 10, 20, 14],
+      "text-padding": 2,
+      "text-allow-overlap": false
+    },
+    "paint": {
+      "text-color": "#1b2129",
+      "text-halo-color": "#ffffff",
+      "text-halo-width": 1.4
     }
   },
   {
